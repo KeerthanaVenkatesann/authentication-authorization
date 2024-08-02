@@ -12,7 +12,18 @@ function auth($action=false,$name=false,$phone=false,$password=false){
     header("Location:Index.php");
    }
   }
-  else if($action== 3){
+  else if($action==2){
+    $sql= "SELECT * FROM users WHERE phone='$phone' AND password='$password'";
+    $query=mysqli_query($con,$sql);
+    if(mysqli_num_rows($query)> 0){
+      setcookie("phone",$phone,time()+10000,"/");
+      setcookie("password",$password,time()+10000,"/");
+        $auth=1;
+        // echo "edfghjkml";
+        header("Location:Index.php");
+    }
+  }
+  else if($action==3){
     setcookie("phone",$phone,time()-10000,"/");
     setcookie("password",$password,time()-10000,"/"); 
     header("Location:Index.php");
