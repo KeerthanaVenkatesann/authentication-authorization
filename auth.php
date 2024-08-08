@@ -1,8 +1,9 @@
 <?php 
 $con=mysqli_connect("127.0.0.1","root","","keerthana");
 $auth=0;
+$user=null;
 function auth($action=false,$name=false,$phone=false,$password=false){
-  global $con,$auth;
+  global $con,$auth,$user;
   if($action==1){
     $sql="INSERT INTO users(`name`,`phone`,`password`) VALUES('$name','$phone','$password')";
    if(mysqli_query($con,$sql)){
@@ -36,6 +37,7 @@ function auth($action=false,$name=false,$phone=false,$password=false){
         $query=mysqli_query($con,$sql);
         if(mysqli_num_rows($query)> 0){
             $auth=1;
+            $user=mysqli_fetch_assoc($query);
         }
     }
   }

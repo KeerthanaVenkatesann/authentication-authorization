@@ -7,5 +7,5 @@ if($auth==1){
 else if($auth==0){
     include("signup.php");
 }
-echo $auth;
+// echo $auth;
 ?>
